@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script th:src="@{js/tool.js}"></script>
+    <script th:src="@{js/user.js}"></script>
+</head>
+<body>
+    <form method="post" id="register-form">
+        <label for="email">nickname: </label>
+        <input type="text" name="nickName" id="nickname"> <br/>
+        <label for="email">email: </label>
+        <input type="text" name="email" id="email"> <br/>
+        <label for="password">password: </label>
+        <input type="text" name="password" id="password"> <br/>
+        <br/>
+        <input type="button" onclick="register('register-form')" value="注册">
+    </form>
+</body>
+</html>
