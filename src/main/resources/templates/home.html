@@ -3,10 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>主页</title>
+    <link rel="stylesheet" th:href="@{css/style.css}">
+<!--    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
 </head>
 <body>
-<div>
-    <h1>there is home</h1>
-</div>
+    <div class="user-menu">
+        <div class="content-div">
+            <ul>
+                <li><a href="#"> 登陆</a></li>
+                <li><a href="#"> 注册</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="nav-menu">
+        <div class="content-div">
+            <ul>
+                <li><a href="#">购物车</a></li>
+                <li><a href="#">订单查询</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="back">
+        <h1>主&nbsp&nbsp&nbsp页</h1>
+    </div>
+    <div class="content-div">
+        <div class="row-2">
+
+        </div>
+        <div class="row-8">
+            <div class="content-center">
+                <div th:each="i:${#numbers.sequence(0, 20)}" class="row-33">
+                    <div class="card">
+                        <img class="goods-img" src="../img/goods/pic6.jpg" alt="picture"/>
+                        <a class="goods-price">¥ 100</a>
+                        <a class="goods-name">商品名称1</a>
+                        <a class="add_to_cart_button">加入购物车</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

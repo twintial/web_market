@@ -1,3 +1,4 @@
+// 表单转json
 function form2Json(form_id) {
     let form = document.getElementById(form_id);
     let arr = {};
@@ -27,6 +28,7 @@ function form2Json(form_id) {
     return JSON.stringify(arr);
 }
 
+// ajax封装
 function ajax_post(url, data, successCallback, failCallback) {
     let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
