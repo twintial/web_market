@@ -7,16 +7,14 @@ import com.web.market.model.User;
 import com.web.market.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
@@ -28,6 +26,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ResponseBody
     @PostMapping("/login")
     public CommonResult<String> LoginHandler(@RequestBody @Valid LoginParam loginParam, HttpSession session) {
         User user = new User();
@@ -35,6 +34,7 @@ public class UserController {
         List<User> list = userService.findList(user);
         for (User item : list) {
             if (item.getPassword().equals(loginParam.getPassword())) {
+                session.setAttribute("id", item.getUserId());
                 session.setAttribute("username", item.getNickName());
                 session.setAttribute("email", item.getEmail());
                 return CommonResult.success("success", "登陆成功");
@@ -43,6 +43,7 @@ public class UserController {
         return CommonResult.failed("用户名或密码错误");
     }
 
+    @ResponseBody
     @PostMapping("/register")
     public CommonResult<String> RegisterHandle(@RequestBody @Valid RegisterParam registerParam){
         log.info(registerParam.toString());
@@ -51,4 +52,9 @@ public class UserController {
         return CommonResult.success("success", "注册成功");
     }
 
+    @RequestMapping("/logout")
+    public String LogoutHandle(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
 }

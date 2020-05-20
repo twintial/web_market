@@ -1,7 +1,11 @@
-package com.market.controller;
+package com.web.market.controller;
 
 import com.github.pagehelper.PageInfo;
 
+import com.web.market.common.api.CommonPage;
+import com.web.market.common.api.CommonResult;
+import com.web.market.model.Goods;
+import com.web.market.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -28,10 +32,11 @@ public class GoodsController {
      * @return
      */
     @PostMapping(value = "/search/{page}/{size}" )
-    public Result<PageInfo> findPage(@RequestBody(required = false)  Goods goods, @PathVariable  int page, @PathVariable  int size) {
+    public CommonResult<CommonPage<Goods>> findPage(
+            @RequestBody(required = false) Goods goods, @PathVariable  int page, @PathVariable  int size) {
         //调用GoodsService实现分页条件查询Goods
         PageInfo<Goods> pageInfo = goodsService.findPage(goods, page, size);
-        return new Result(true,StatusCode.OK,"查询成功",pageInfo);
+        return CommonResult.success(CommonPage.restPage(pageInfo));
     }
 
     /***
@@ -41,10 +46,10 @@ public class GoodsController {
      * @return
      */
     @GetMapping(value = "/search/{page}/{size}" )
-    public Result<PageInfo> findPage(@PathVariable  int page, @PathVariable  int size) {
+    public CommonResult<CommonPage<Goods>> findPage(@PathVariable int page, @PathVariable int size) {
         //调用GoodsService实现分页查询Goods
         PageInfo<Goods> pageInfo = goodsService.findPage(page, size);
-        return new Result<PageInfo>(true,StatusCode.OK,"查询成功",pageInfo);
+        return CommonResult.success(CommonPage.restPage(pageInfo));
     }
 
     /***
@@ -53,10 +58,10 @@ public class GoodsController {
      * @return
      */
     @PostMapping(value = "/search" )
-    public Result<List<Goods>> findList(@RequestBody(required = false)  Goods goods) {
+    public CommonResult<List<Goods>> findList(@RequestBody(required = false)  Goods goods) {
         //调用GoodsService实现条件查询Goods
         List<Goods> list = goodsService.findList(goods);
-        return new Result<List<Goods>>(true,StatusCode.OK,"查询成功",list);
+        return CommonResult.success(list);
     }
 
     /***
@@ -65,10 +70,10 @@ public class GoodsController {
      * @return
      */
     @DeleteMapping(value = "/{id}" )
-    public Result delete(@PathVariable Integer id) {
+    public CommonResult<String> delete(@PathVariable Integer id) {
         //调用GoodsService实现根据主键删除
         goodsService.delete(id);
-        return new Result(true,StatusCode.OK,"删除成功");
+        return CommonResult.success("删除成功");
     }
 
     /***
@@ -78,24 +83,12 @@ public class GoodsController {
      * @return
      */
     @PutMapping(value="/{id}")
-    public Result update(@RequestBody  Goods goods,@PathVariable Integer id) {
+    public CommonResult update(@RequestBody  Goods goods,@PathVariable Integer id) {
         //设置主键值
         goods.setGoodsId(id);
         //调用GoodsService实现修改Goods
         goodsService.update(goods);
-        return new Result(true,StatusCode.OK,"修改成功");
-    }
-
-    /***
-     * 新增Goods数据
-     * @param goods
-     * @return
-     */
-    @PostMapping
-    public Result add(@RequestBody   Goods goods) {
-        //调用GoodsService实现添加Goods
-        goodsService.add(goods);
-        return new Result(true,StatusCode.OK,"添加成功");
+        return CommonResult.success("修改成功");
     }
 
     /***
@@ -104,10 +97,10 @@ public class GoodsController {
      * @return
      */
     @GetMapping("/{id}")
-    public Result<Goods> findById(@PathVariable Integer id) {
+    public CommonResult<Goods> findById(@PathVariable Integer id) {
         //调用GoodsService实现根据主键查询Goods
         Goods goods = goodsService.findById(id);
-        return new Result<Goods>(true,StatusCode.OK,"查询成功",goods);
+        return CommonResult.success(goods);
     }
 
     /***
@@ -115,9 +108,9 @@ public class GoodsController {
      * @return
      */
     @GetMapping
-    public Result<List<Goods>> findAll() {
+    public CommonResult<List<Goods>> findAll() {
         //调用GoodsService实现查询所有Goods
         List<Goods> list = goodsService.findAll();
-        return new Result<List<Goods>>(true, StatusCode.OK,"查询成功",list) ;
+        return CommonResult.success(list);
     }
 }

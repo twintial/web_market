@@ -147,6 +147,7 @@ a.goods-price:hover {
 .add_to_cart_button {
     background: none repeat scroll 0 0 #1abc9c;
     border: medium none;
+    border-radius: 5px;
     color: #fff;
     width: 100%;
     margin: 5px;
@@ -160,4 +161,10 @@ a.goods-price:hover {
     background-color: #222;
     color: #fff;
     text-decoration: none;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 25px;
+    text-decoration: underline;
 }

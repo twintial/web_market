@@ -10,14 +10,14 @@ public class RouteMapController {
 
     @RequestMapping("/")
     public String Home() {
-        return "/home";
+        return "redirect:/home";
     }
 
     @RequestMapping("/login")
     public String login(HttpSession httpSession) {
-        if (httpSession.getAttribute("username") != null) {
-            return "redirect:/";
-        }
+//        if (httpSession.getAttribute("username") != null) {
+//            return "redirect:/";
+//        }
         return "login";
     }
 
