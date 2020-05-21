@@ -49,3 +49,7 @@ a.goods-price:hover {
     color: #fff;
     text-decoration: none;
 }
+
+.home-content {
+    display: inline-block;
+}

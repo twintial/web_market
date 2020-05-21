@@ -15,26 +15,26 @@
     padding: 8px 0;
 }
 
-ul.tag-men {
-    padding: 0.3em 0;
+ul.tag {
+    padding: 4px 0;
     border-top: 1px solid #C4C3C3;
     border-bottom: 1px solid #C4C3C3;
 }
 
-ul.tag-men li {
+ul.tag li {
     list-style: none;
     color: #000;
-    margin: 0.3em 0;
+    margin: 4px 0;
     font-weight: 300;
     font-size: 0.9em;
 }
 
-ul.tag-men li span.women1 {
-    margin-left: 9em;
+ul.tag li span.number {
+    margin-left: 120px;
 }
 
-ul.tag-men li span.women1 {
-    margin-left: 9em;
+ul.tag li span.number {
+    margin-left: 120px;
 }
 
 .add-cart {
@@ -52,6 +52,15 @@ ul.tag-men li span.women1 {
 }
 
 .goods-show-img {
-    margin-left: 100px;
     margin-top: 50px;
+}
+
+.center {
+    text-align: center;
+}
+
+.show-box {
+    width: 50%;
+    text-align: center;
+    display: inline-block;
 }

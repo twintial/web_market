@@ -38,25 +38,34 @@
         <h1>商品详情</h1>
     </div>
 </div>
-<div class="content-div">
-    <div class="row-4">
+<div class="content-div center">
+    <div>
         <img class="goods-show-img" th:src="@{img/goods/pic6.jpg}"/>
     </div>
-    <div class="row-6">
+    <div class="show-box">
         <div class="single-para" th:id="${goods.goodsId}">
             <h4 th:text="${goods.goodsName}"></h4>
 
             <h5 class="item_price" th:text="'¥' + ${goods.price}"></h5>
             <p th:text="${goods.goodsContent}"></p>
-            <ul class="tag-men">
-                <li><span>商品类型</span>
-                    <span class="women1" th:text="'：' + ${goods.typeId}"></span></li>
-                <li><span>商品库存</span>
-                    <span class="women1" th:text="'：' + ${goods.goodsCount}"></span></li>
+            <ul class="tag">
+                <li>
+                    <span>商品类型</span>
+                    <span class="number" th:text="'：' + ${goods.typeId}"></span>
+                </li>
+                <li>
+                    <span>商品库存</span>
+                    <span class="number" th:text="'：' + ${goods.goodsCount}"></span>
+                </li>
             </ul>
             <a href="#" class="add-cart" onclick="add_to_cart(this)">加入购物车</a>
 
         </div>
+    </div>
+</div>
+<div class="center">
+    <div class="footer">
+        <p>@2020 Design by Shenjunjie</p>
     </div>
 </div>
 </body>
