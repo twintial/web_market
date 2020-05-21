@@ -1,13 +1,22 @@
 package com.web.market.controller;
 
+import com.web.market.model.Goods;
+import com.web.market.service.GoodsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpSession;
 
 @Controller
 public class RouteMapController {
+
+    @Autowired
+    GoodsService goodsService;
 
     @RequestMapping("/")
     public String Home() {
@@ -16,9 +25,9 @@ public class RouteMapController {
 
     @RequestMapping("/login")
     public String login(HttpSession httpSession) {
-//        if (httpSession.getAttribute("username") != null) {
-//            return "redirect:/";
-//        }
+        if (httpSession.getAttribute("username") != null) {
+            return "redirect:/";
+        }
         return "login";
     }
 
@@ -28,12 +37,22 @@ public class RouteMapController {
     }
 
     @RequestMapping("/cart")
-    public String shopCart(Model model, HttpSession httpSession){
-        // 处理
-        if (httpSession.getAttribute("id") != null) {
-            model.addAttribute("username", httpSession.getAttribute("username"));
-            model.addAttribute("email", httpSession.getAttribute("email"));
-        }
+    public String shopCart(){
         return "cart";
+    }
+
+    @RequestMapping("/order")
+    public String order(){
+        return "order";
+    }
+
+    @RequestMapping("/single")
+    public String goods(Integer goodsId, Model model){
+        Goods goods = goodsService.findById(goodsId);
+        if (goods == null) {
+            return "404";
+        }
+        model.addAttribute("goods", goods);
+        return "single";
     }
 }

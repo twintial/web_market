@@ -95,6 +95,30 @@ a:hover {
     width: 80%;
 }
 
+.row-3 {
+    float: left;
+    /*background: cornflowerblue;*/
+    width: 30%;
+}
+
+.row-4 {
+    float: left;
+    /*background: cornflowerblue;*/
+    width: 40%;
+}
+
+.row-7 {
+    float: right;
+    /*background: cadetblue;*/
+    width: 70%;
+}
+
+.row-6 {
+    float: right;
+    /*background: cadetblue;*/
+    width: 60%;
+}
+
 .row-33 {
     float: left;
     /*background: cornflowerblue;*/

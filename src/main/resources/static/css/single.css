@@ -1,0 +1,57 @@
+.single-para h4 {
+    color: #000;
+    font-size: 30px;
+}
+
+.single-para p {
+    font-size: 18px;
+    margin: 50px 10px 50px 10px;
+}
+
+.single-para h5 {
+    color: #ff5d56;
+    font-size: 30px;
+    border-bottom: 1px solid #C4C3C3;
+    padding: 8px 0;
+}
+
+ul.tag-men {
+    padding: 0.3em 0;
+    border-top: 1px solid #C4C3C3;
+    border-bottom: 1px solid #C4C3C3;
+}
+
+ul.tag-men li {
+    list-style: none;
+    color: #000;
+    margin: 0.3em 0;
+    font-weight: 300;
+    font-size: 0.9em;
+}
+
+ul.tag-men li span.women1 {
+    margin-left: 9em;
+}
+
+ul.tag-men li span.women1 {
+    margin-left: 9em;
+}
+
+.add-cart {
+    float: right;
+    background: none repeat scroll 0 0 #1abc9c;
+    border: medium none;
+    color: #fff;
+    padding: 11px 20px;
+}
+
+.add-cart:hover {
+    color: white;
+    background-color: #222;
+    cursor: pointer;
+}
+
+.goods-show-img {
+    margin-left: 100px;
+    margin-top: 50px;
+}

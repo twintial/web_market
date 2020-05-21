@@ -21,14 +21,17 @@ function get_goods(page, size) {
             // 测试
             // img.setAttribute("src", good_list[i].img);
             img.setAttribute("src", "../img/goods/pic6.jpg");
+            img.setAttribute("onclick", "jump({0})".format(good_list[i].goodsId));
             img.setAttribute("alt", "picture");
 
             let price = document.createElement("a");
             price.setAttribute("class", "goods-price");
+            price.setAttribute("href", "/single?goodsId={0}".format(good_list[i].goodsId));
             price.innerHTML = "¥ " + good_list[i].price;
 
             let name = document.createElement("a");
             name.setAttribute("class", "goods-name");
+            name.setAttribute("href", "/single?goodsId={0}".format(good_list[i].goodsId));
             name.innerHTML = good_list[i].goodsName;
 
             let button = document.createElement("a");
@@ -49,20 +52,4 @@ function get_goods(page, size) {
         alert("商品获取失败")
     };
     ajax_get("/goods/search/" + page + "/" + size, success_callback, fail_callback)
-}
-
-function add_to_cart(button) {
-    let goodsId = button.parentNode.id;
-    let uId = sessionStorage.getItem("id");
-    if (uId === "null") {
-        Toast("请先登陆", 1000);
-        return;
-    }
-    let shopCar = {"userId": uId, "goodsId": goodsId, "count": 1};
-    let successCallback = function (response) {
-        if (response.code === 200) {
-            Toast("添加成功", 1000);
-        }
-    };
-    ajax_post("/shopCar", JSON.stringify(shopCar), successCallback, null);
 }

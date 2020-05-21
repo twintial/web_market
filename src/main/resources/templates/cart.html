@@ -16,29 +16,31 @@
     </script>
 </head>
 <body>
-<div class="user-menu">
-    <div class="content-div" th:switch="${username != null}">
-        <ul th:case="false">
-            <li><a href="/login">登陆</a></li>
-            <li><a href="/register">注册</a></li>
-        </ul>
-        <ul th:case="true">
-            <li><p>欢迎!&nbsp;<span class="username" th:text="${username}"></span></p></li>
-            <li><a href="/user/logout">注销</a></li>
-        </ul>
+<div>
+    <div class="user-menu">
+        <div class="content-div" th:switch="${session.username != null}">
+            <ul th:case="false">
+                <li><a href="/login">登陆</a></li>
+                <li><a href="/register">注册</a></li>
+            </ul>
+            <ul th:case="true">
+                <li><p>欢迎!&nbsp;<span class="username" th:text="${session.username}"></span></p></li>
+                <li><a href="/user/logout">注销</a></li>
+            </ul>
+        </div>
     </div>
-</div>
-<div class="nav-menu">
-    <div class="content-div">
-        <ul>
-            <li><a href="/home">主页</a></li>
-            <li><a href="/cart">购物车</a></li>
-            <li><a href="#">订单查询</a></li>
-        </ul>
+    <div class="nav-menu">
+        <div class="content-div">
+            <ul>
+                <li><a href="/home">主页</a></li>
+                <li><a href="/cart">购物车</a></li>
+                <li><a href="/order">订单查询</a></li>
+            </ul>
+        </div>
     </div>
-</div>
-<div class="back">
-    <h1>购&nbsp;物&nbsp;车</h1>
+    <div class="back">
+        <h1>购&nbsp;物&nbsp;车</h1>
+    </div>
 </div>
 <div class="content-div">
     <form method="post" action="#">

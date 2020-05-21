@@ -1,6 +1,7 @@
 package com.web.market.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +17,7 @@ import java.lang.Integer;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name="user_order")
 public class UserOrder implements Serializable{
 

@@ -11,12 +11,7 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
     @RequestMapping("/home")
-    public String Home(Model model, HttpSession httpSession) {
-        // 处理
-        if (httpSession.getAttribute("id") != null) {
-            model.addAttribute("username", httpSession.getAttribute("username"));
-            model.addAttribute("email", httpSession.getAttribute("email"));
-        }
+    public String Home() {
         return "home";
     }
 }

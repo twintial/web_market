@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ch">
 <head>
     <meta charset="UTF-8">
-    <title>主页</title>
+    <title>商品详情</title>
     <link rel="stylesheet" th:href="@{css/style.css}">
-    <link rel="stylesheet" th:href="@{css/home.css}">
-    <script th:src="@{js/home.js}"></script>
+    <link rel="stylesheet" th:href="@{css/single.css}">
     <script th:src="@{js/util.js}"></script>
+    <script th:src="@{js/single.js}"></script>
     <script th:inline="javascript">
         sessionStorage.setItem("id", [[${session.id}]]);
-        window.onload = function () {
-            get_goods(1, 15);
-        }
     </script>
 </head>
 <body>
@@ -38,23 +35,27 @@
         </div>
     </div>
     <div class="back">
-        <h1>主&nbsp;&nbsp;&nbsp;页</h1>
+        <h1>商品详情</h1>
     </div>
 </div>
 <div class="content-div">
-    <div class="row-2">
-
+    <div class="row-4">
+        <img class="goods-show-img" th:src="@{img/goods/pic6.jpg}"/>
     </div>
-    <div class="row-8">
-        <div class="content-center" id="goods-list">
-<!--                <div th:each="i:${#numbers.sequence(0, 5)}" class="row-33">-->
-<!--                    <div class="card" id="goods-id">-->
-<!--                        <img class="goods-img" src="../img/goods/pic6.jpg" alt="picture"/>-->
-<!--                        <a class="goods-price">¥ 100</a>-->
-<!--                        <a class="goods-name">商品名称1</a>-->
-<!--                        <a class="add_to_cart_button" onclick="add_to_cart(this)">加入购物车</a>-->
-<!--                    </div>-->
-<!--                </div>-->
+    <div class="row-6">
+        <div class="single-para" th:id="${goods.goodsId}">
+            <h4 th:text="${goods.goodsName}"></h4>
+
+            <h5 class="item_price" th:text="'¥' + ${goods.price}"></h5>
+            <p th:text="${goods.goodsContent}"></p>
+            <ul class="tag-men">
+                <li><span>商品类型</span>
+                    <span class="women1" th:text="'：' + ${goods.typeId}"></span></li>
+                <li><span>商品库存</span>
+                    <span class="women1" th:text="'：' + ${goods.goodsCount}"></span></li>
+            </ul>
+            <a href="#" class="add-cart" onclick="add_to_cart(this)">加入购物车</a>
+
         </div>
     </div>
 </div>

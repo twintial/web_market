@@ -3,10 +3,12 @@ package com.web.market.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.web.market.dao.UserOrderMapper;
+import com.web.market.model.Goods;
 import com.web.market.model.UserOrder;
 import com.web.market.service.UserOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 import java.util.List;
 /****
@@ -75,7 +77,9 @@ public class UserOrderServiceImpl implements UserOrderService {
         Example example = new Example(UserOrder.class);
         Example.Criteria criteria = example.createCriteria();
         if(userOrder != null) {
-            // write it yourself
+            if (!StringUtils.isEmpty(userOrder.getUserId())) {
+                criteria.andEqualTo("userId", userOrder.getUserId());
+            }
         }
         return example;
     }
@@ -125,5 +129,10 @@ public class UserOrderServiceImpl implements UserOrderService {
     @Override
     public List<UserOrder> findAll() {
         return userOrderMapper.selectAll();
+    }
+
+    @Override
+    public List<Goods> findGoodsByOrderId(String orderId) {
+        return userOrderMapper.findGoodsByOrderId(orderId);
     }
 }

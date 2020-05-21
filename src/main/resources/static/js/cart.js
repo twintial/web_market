@@ -25,6 +25,7 @@ function get_cart_list(page, size) {
     if (uId === "null") {
         alert("请先登陆");
         window.location.href = "/login";
+        return;
     }
     let success_callback = function (response) {
         console.log(response);
@@ -36,9 +37,9 @@ function get_cart_list(page, size) {
             let td_class = ["product-remove", "product-thumbnail", "product-name", "product-price", "product-quantity", "", ""];
             let td_children = [
                 createFrag('<a title="从购物车中删除" onclick="remove(this)">×</a>'),
-                createFrag('<a href="#"><img width="145" height="145" alt="picture"' +
+                createFrag('<a href="/single?goodsId={0}"><img width="145" height="145" alt="picture"'.format(data[i].goodsId) +
                     ' src="../img/goods/{0}"></a>'.format("pic6.jpg")),
-                createFrag('<a>{0}</a>'.format(data[i].goodsName)),
+                createFrag('<a href="/single?goodsId={0}">{0}</a>'.format(data[i].goodsId).format(data[i].goodsName)),
                 createFrag('<span class="amount">¥{0}</span>'.format(data[i].price)),
                 createFrag('                    <div class="quantity">\n' +
                     '                        <input type="button" name={0} class="minus" onclick="plus(this, -1)" value="-">\n'.format(data[i].goodsId) +
@@ -130,7 +131,6 @@ function checkout() {
         }
     };
     let l = {"checkoutList": checkout_list};
-    let a = {"goods": [1, 2, 3]};
     ajax_post('/order/create/{0}'.format(total_cost), JSON.stringify(l), success, null);
 }
 

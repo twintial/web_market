@@ -1,6 +1,7 @@
 package com.web.market.service;
 
 import com.github.pagehelper.PageInfo;
+import com.web.market.model.Goods;
 import com.web.market.model.UserOrder;
 
 import java.util.List;
@@ -66,4 +67,6 @@ public interface UserOrderService {
      * @return
      */
     List<UserOrder> findAll();
+
+    List<Goods> findGoodsByOrderId(String orderId);
 }
