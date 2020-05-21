@@ -122,6 +122,10 @@ function checkout() {
         total_cost += item.price * item.goodsCount;
         return item.goodsCount !== 0;
     });
+    if (checkout_list.length === 0) {
+        alert("请选择商品");
+        return;
+    }
 
     let success = function (response) {
         total_cost = 0;

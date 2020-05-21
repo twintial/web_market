@@ -43,7 +43,14 @@
 </div>
 <div class="content-div home-content">
     <div class="row-2">
-        <p>asdasd</p>
+        <div class="search">
+            <div class="search2">
+                <form>
+                    <input id="search-value" type="text" value="搜索..." onfocus="this.value = '';" onblur="if (this.value === '') {this.value = '搜索...';}"/>
+                    <input type="button" onclick="search(1, 15)" value="">
+                </form>
+            </div>
+        </div>
     </div>
     <div class="row-8">
         <div class="content-center" id="goods-list">
