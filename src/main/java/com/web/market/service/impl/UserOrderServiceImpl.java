@@ -101,10 +101,11 @@ public class UserOrderServiceImpl implements UserOrderService {
     /**
      * 增加UserOrder
      * @param userOrder
+     * @return
      */
     @Override
-    public void add(UserOrder userOrder) {
-        userOrderMapper.insert(userOrder);
+    public int add(UserOrder userOrder) {
+        return userOrderMapper.insert(userOrder);
     }
 
     /**

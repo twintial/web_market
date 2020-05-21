@@ -1,6 +1,7 @@
 package com.web.market.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
@@ -10,7 +11,7 @@ public class RouteMapController {
 
     @RequestMapping("/")
     public String Home() {
-        return "redirect:/home";
+        return "forward:/home";
     }
 
     @RequestMapping("/login")
@@ -24,5 +25,15 @@ public class RouteMapController {
     @RequestMapping("/register")
     public String register() {
         return "register";
+    }
+
+    @RequestMapping("/cart")
+    public String shopCart(Model model, HttpSession httpSession){
+        // 处理
+        if (httpSession.getAttribute("id") != null) {
+            model.addAttribute("username", httpSession.getAttribute("username"));
+            model.addAttribute("email", httpSession.getAttribute("email"));
+        }
+        return "cart";
     }
 }

@@ -101,68 +101,6 @@ a:hover {
     width: 33.33%;
 }
 
-.card {
-    margin: 1% 1% 1% 1%;
-}
-
-/*.card a:hover{*/
-/*    cursor: pointer;*/
-/*    display: initial;*/
-/*}*/
-
-/*.card:hover {*/
-/*    cursor: pointer;*/
-/*    border: 1px solid orangered;*/
-/*}*/
-
-.goods-img {
-    margin: 5px;
-    border: 1px solid lightgrey;
-    height: inherit;
-    width: inherit;
-}
-.goods-img:hover {
-    cursor: pointer;
-    border: 1px solid orangered;
-}
-
-.goods-name {
-    margin: 5px;
-    display: inherit;
-}
-a.goods-name:hover {
-    cursor: pointer;
-    text-decoration: initial;
-}
-
-.goods-price {
-    margin: 5px;
-    display: inherit;
-    color: orangered;
-}
-a.goods-price:hover {
-    cursor: pointer;
-}
-
-.add_to_cart_button {
-    background: none repeat scroll 0 0 #1abc9c;
-    border: medium none;
-    border-radius: 5px;
-    color: #fff;
-    width: 100%;
-    margin: 5px;
-    padding: 10px 0 10px 0;
-    text-align: center;
-    display: inline-block
-}
-
-.add_to_cart_button:hover {
-    cursor: pointer;
-    background-color: #222;
-    color: #fff;
-    text-decoration: none;
-}
-
 .username {
     font-weight: bold;
     font-size: 25px;

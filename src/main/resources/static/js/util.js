@@ -31,8 +31,8 @@ function form2Json(form_id) {
 // ajax封装
 function ajax_post(url, data, successCallback, failCallback) {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState===4 && xmlhttp.status===200){
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             successCallback(JSON.parse(xmlhttp.responseText))
         }
     };
@@ -43,12 +43,57 @@ function ajax_post(url, data, successCallback, failCallback) {
 
 function ajax_get(url, successCallback, failCallback) {
     let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState===4 && xmlhttp.status===200){
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             successCallback(JSON.parse(xmlhttp.responseText))
         }
     };
     xmlhttp.open("GET", url, true);
     // xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send();
+}
+
+function ajax_delete(url, successCallback, failCallback) {
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            successCallback(JSON.parse(xmlhttp.responseText))
+        }
+    };
+    xmlhttp.open("DELETE", url, true);
+    // xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.send();
+}
+
+// string format
+String.prototype.format = function () {
+    if (arguments.length === 0) {
+        return this;
+    }
+    for (var StringFormat_s = this, StringFormat_i = 0; StringFormat_i < arguments.length; StringFormat_i++) {
+        StringFormat_s = StringFormat_s.replace(new RegExp("\\{" + StringFormat_i + "\\}", "g"), arguments[StringFormat_i]);
+    }
+    return StringFormat_s;
+};
+
+// 创建html元素
+function createFrag(template) {
+    return document.createRange().createContextualFragment(template);
+}
+
+// Toast弹窗
+function Toast(msg, duration) {
+    duration = isNaN(duration) ? 3000 : duration;
+    let m = document.createElement('div');
+    m.innerHTML = msg;
+    m.style.cssText = "max-width:60%;min-width: 150px;padding:0 14px;height: 40px;color: rgb(255, 255, 255);line-height: 40px;text-align: center;border-radius: 4px;position: fixed;top: 20%;left: 50%;transform: translate(-50%, -50%);z-index: 999999;background: rgba(0, 0, 0,.7);font-size: 16px;";
+    document.body.appendChild(m);
+    setTimeout(function () {
+        let d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function () {
+            document.body.removeChild(m)
+        }, d * 1000);
+    }, duration);
 }

@@ -3,11 +3,16 @@ package com.web.market.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.web.market.dao.ShopCarMapper;
+import com.web.market.dto.CartItemParam;
+import com.web.market.model.Goods;
 import com.web.market.model.ShopCar;
 import com.web.market.service.ShopCarService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
+
 import java.util.List;
 /****
  * @Author:shenjunjie
@@ -15,6 +20,7 @@ import java.util.List;
  * @Date:2020/05/19
  *****/
 @Service
+@Slf4j
 public class ShopCarServiceImpl implements ShopCarService {
 
     @Autowired
@@ -75,7 +81,9 @@ public class ShopCarServiceImpl implements ShopCarService {
         Example example = new Example(ShopCar.class);
         Example.Criteria criteria = example.createCriteria();
         if(shopCar != null) {
-            // write it yourself
+            if (!StringUtils.isEmpty(shopCar.getUserId())) {
+                criteria.andEqualTo("userId", shopCar.getUserId());
+            }
         }
         return example;
     }
@@ -124,5 +132,18 @@ public class ShopCarServiceImpl implements ShopCarService {
     @Override
     public List<ShopCar> findAll() {
         return shopCarMapper.selectAll();
+    }
+
+    @Override
+    public PageInfo<CartItemParam> findInfo(ShopCar shopCar, int page, int size) {
+        //静态分页
+        PageHelper.startPage(page,size);
+        //分页查询
+        return new PageInfo<>(shopCarMapper.findInfo(shopCar));
+    }
+
+    @Override
+    public void deleteByUserGoodsId(Integer uId, Integer gId) {
+        shopCarMapper.deleteByUserGoodsId(uId, gId);
     }
 }

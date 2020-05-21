@@ -1,5 +1,5 @@
 function get_goods(page, size) {
-    success_callback = function (response) {
+    let success_callback = function (response) {
         console.log(response);
         let card_container = document.getElementById("goods-list");
         // while (card_container.hasChildNodes()) {
@@ -13,7 +13,7 @@ function get_goods(page, size) {
 
             let card = document.createElement("div");
             card.setAttribute("class", "card");
-            card.setAttribute("id", good_list[i].goodsID);
+            card.setAttribute("id", good_list[i].goodsId);
             row33.appendChild(card);
 
             let img = document.createElement("img");
@@ -25,7 +25,7 @@ function get_goods(page, size) {
 
             let price = document.createElement("a");
             price.setAttribute("class", "goods-price");
-            price.innerHTML = good_list[i].price;
+            price.innerHTML = "¥ " + good_list[i].price;
 
             let name = document.createElement("a");
             name.setAttribute("class", "goods-name");
@@ -33,6 +33,8 @@ function get_goods(page, size) {
 
             let button = document.createElement("a");
             button.setAttribute("class", "add_to_cart_button");
+            button.setAttribute("onclick", "add_to_cart(this)");
+            // button.addEventListener("onclick", add_to_cart);
             button.innerHTML = "加入购物车";
 
             card.appendChild(img);
@@ -43,8 +45,24 @@ function get_goods(page, size) {
             card_container.appendChild(row33)
         }
     };
-    fail_callback = function () {
+    let fail_callback = function () {
         alert("商品获取失败")
     };
     ajax_get("/goods/search/" + page + "/" + size, success_callback, fail_callback)
+}
+
+function add_to_cart(button) {
+    let goodsId = button.parentNode.id;
+    let uId = sessionStorage.getItem("id");
+    if (uId === "null") {
+        Toast("请先登陆", 1000);
+        return;
+    }
+    let shopCar = {"userId": uId, "goodsId": goodsId, "count": 1};
+    let successCallback = function (response) {
+        if (response.code === 200) {
+            Toast("添加成功", 1000);
+        }
+    };
+    ajax_post("/shopCar", JSON.stringify(shopCar), successCallback, null);
 }

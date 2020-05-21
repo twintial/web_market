@@ -1,6 +1,8 @@
 package com.web.market.service;
 
 import com.github.pagehelper.PageInfo;
+import com.web.market.dto.CartItemParam;
+import com.web.market.model.Goods;
 import com.web.market.model.ShopCar;
 
 import java.util.List;
@@ -65,4 +67,8 @@ public interface ShopCarService {
      * @return
      */
     List<ShopCar> findAll();
+
+    PageInfo<CartItemParam> findInfo(ShopCar shopCar, int page, int size);
+
+    void deleteByUserGoodsId(Integer uId, Integer gId);
 }

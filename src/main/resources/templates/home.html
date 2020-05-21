@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <title>主页</title>
     <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="stylesheet" th:href="@{css/home.css}">
     <script th:src="@{js/home.js}"></script>
     <script th:src="@{js/util.js}"></script>
-    <script>
+    <script th:inline="javascript">
+        sessionStorage.setItem("id", [[${session.id}]]);
         window.onload = function () {
             get_goods(1, 15);
         }
     </script>
-<!--    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->
 </head>
 <body>
     <div class="user-menu">
@@ -29,7 +30,8 @@
     <div class="nav-menu">
         <div class="content-div">
             <ul>
-                <li><a href="#">购物车</a></li>
+                <li><a href="/home">主页</a></li>
+                <li><a href="/cart">购物车</a></li>
                 <li><a href="#">订单查询</a></li>
             </ul>
         </div>
@@ -48,7 +50,7 @@
 <!--                        <img class="goods-img" src="../img/goods/pic6.jpg" alt="picture"/>-->
 <!--                        <a class="goods-price">¥ 100</a>-->
 <!--                        <a class="goods-name">商品名称1</a>-->
-<!--                        <a class="add_to_cart_button">加入购物车</a>-->
+<!--                        <a class="add_to_cart_button" onclick="add_to_cart(this)">加入购物车</a>-->
 <!--                    </div>-->
 <!--                </div>-->
             </div>

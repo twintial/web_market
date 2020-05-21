@@ -50,8 +50,9 @@ public interface UserOrderService {
     /***
      * 新增UserOrder
      * @param userOrder
+     * @return
      */
-    void add(UserOrder userOrder);
+    int add(UserOrder userOrder);
 
     /**
      * 根据ID查询UserOrder

@@ -17,7 +17,7 @@ function register(form_id) {
     let register_success = function (response) {
         if (response.code === 200) {
             alert("注册成功!");
-            window.location.href = "/";
+            window.location.href = "/login";
         } else {
             alert(response.message)
         }
